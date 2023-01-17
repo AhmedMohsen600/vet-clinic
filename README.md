@@ -107,7 +107,7 @@ To get a local copy up and running, follow these steps.
 
 ## Setup
 
-clone this repo: git cline https://github.com/AhmedMohsen600/vet-clinic.git
+clone this repo: git clone https://github.com/AhmedMohsen600/vet-clinic.git
 
 <!-- AUTHORS -->
 
