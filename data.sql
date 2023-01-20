@@ -29,3 +29,115 @@ VALUES
     ('Boarmon', '2005-06-7', 7, TRUE, 20.4),
     ('Blossom', '1998-10-13', 3, TRUE, 17),
     ('Ditto', '2022-05-14', 4, TRUE, 22);
+
+--  SPECIES INSERT DATA
+INSERT INTO
+    species (name)
+VALUES
+    ('Pokemon');
+
+INSERT INTO
+    species (name)
+VALUES
+    ('Digimon');
+
+--  OWNSERS INSERT DATA
+INSERT INTO
+    owners (full_name, age)
+VALUES
+    ('Sam Smith', 34);
+
+INSERT INTO
+    owners (full_name, age)
+VALUES
+    ('Jennifer Orwell', 19);
+
+INSERT INTO
+    owners (full_name, age)
+VALUES
+    ('Bob', 45);
+
+INSERT INTO
+    owners (full_name, age)
+VALUES
+    ('Melody Pond', 77);
+
+INSERT INTO
+    owners (full_name, age)
+VALUES
+    ('Dean Winchester', 14);
+
+INSERT INTO
+    owners (full_name, age)
+VALUES
+    ('Jodie Whittaker', 38);
+
+-- set owner_id 
+UPDATE animals
+SET
+    owner_id = 1
+WHERE
+    id = 1;
+
+UPDATE animals
+SET
+    owner_id = 2
+WHERE
+    id = 2;
+
+UPDATE animals
+SET
+    owner_id = 2
+WHERE
+    id = 3;
+
+UPDATE animals
+SET
+    owner_id = 3
+WHERE
+    id = 4;
+
+UPDATE animals
+SET
+    owner_id = 3
+WHERE
+    id = 6;
+
+UPDATE animals
+SET
+    owner_id = 4
+WHERE
+    id = 5;
+
+UPDATE animals
+SET
+    owner_id = 4
+WHERE
+    id = 7;
+
+UPDATE animals
+SET
+    owner_id = 4
+WHERE
+    id = 10;
+
+UPDATE animals
+SET
+    owner_id = 5
+WHERE
+    id = 8;
+
+UPDATE animals
+SET
+    owner_id = 5
+WHERE
+    id = 9;
+
+UPDATE animals
+SET
+    species_id = (
+        CASE
+            WHEN RIGHT (name, 3) = 'mon' THEN 2
+            ELSE 1
+        END
+    );

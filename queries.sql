@@ -178,3 +178,73 @@ WHERE
     date_of_birth BETWEEN '1990-01-1' AND '2000-01-1'
 GROUP BY
     species;
+
+-- JOIN
+SELECT
+    owners.*,
+    name AS animal_name
+FROM
+    owners
+    JOIN animals ON animals.owner_id = owners.id
+WHERE
+    owners.id = 4;
+
+SELECT
+    animals.name
+FROM
+    animals
+    JOIN species ON animals.species_id = species.id
+WHERE
+    species.id = 1;
+
+SELECT
+    *,
+    animals.name
+FROM
+    owners
+    LEFT JOIN animals ON animals.owner_id = owners.id;
+
+SELECT
+    species.name,
+    count(*) AS "Animal Count"
+FROM
+    species
+    JOIN animals ON species.id = animals.species_id
+GROUP BY
+    species.name;
+
+SELECT
+    owners.full_name,
+    animals.name AS animal_name,
+    species.name AS species_name
+FROM
+    animals
+    JOIN species ON animals.species_id = species.id
+    JOIN owners ON owners.id = animals.owner_id
+WHERE
+    species.name = 'Digimon'
+    AND owners.full_name = 'Jennifer Orwell';
+
+SELECT
+    owners.full_name,
+    animals.name,
+    animals.escape_attempts
+FROM
+    owners
+    JOIN animals ON animals.owner_id = owners.id
+WHERE
+    animals.escape_attempts = 0
+    AND owners.full_name = 'Dean Winchester';
+
+SELECT
+    owners.full_name,
+    count(*)
+FROM
+    owners
+    JOIN animals ON animals.owner_id = owners.id
+GROUP BY
+    owners.full_name
+ORDER BY
+    count(*) DESC
+LIMIT
+    1;
