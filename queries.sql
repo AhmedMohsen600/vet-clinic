@@ -248,3 +248,112 @@ ORDER BY
     count(*) DESC
 LIMIT
     1;
+
+SELECT
+    animals.name as animal_name
+FROM
+    visits
+    JOIN animals ON animals.id = visits.animals_id
+    JOIN vets ON vets.id = visits.vets_id
+WHERE
+    vets.id = 1
+ORDER BY
+    visits.visit_date DESC
+LIMIT
+    1;
+
+SELECT
+    vets.name,
+    COUNT(animals.name)
+FROM
+    animals
+    JOIN visits ON animals.id = visits.animals_id
+    JOIN vets ON vets.id = visits.vets_id
+WHERE
+    vets.id = 3
+GROUP BY
+    vets.name;
+
+SELECT
+    vets.name AS vets_name,
+    species.name
+FROM
+    vets
+    LEFT JOIN specializations ON vets.id = specializations.vets_id
+    LEFT JOIN species ON species.id = specializations.species_id;
+
+SELECT
+    animals.name AS animal_name,
+    vets.name AS vets_name
+FROM
+    animals
+    JOIN visits ON animals.id = visits.animals_id
+    JOIN vets ON visits.vets_id = vets.id
+WHERE
+    vets.id = 3
+    AND visits.visit_date BETWEEN '2020-04-01' AND '2020-08-30';
+
+SELECT
+    animals.name,
+    COUNT(animals.name)
+FROM
+    animals
+    JOIN visits ON animals.id = visits.animals_id
+GROUP BY
+    animals.name
+ORDER BY
+    COUNT(animals.name) DESC
+LIMIT
+    1;
+
+SELECT
+    animals.name,
+    visits.visit_date
+FROM
+    animals
+    JOIN visits ON animals.id = visits.animals_id
+    JOIN vets ON vets.id = visits.vets_id
+WHERE
+    vets.id = 2
+ORDER BY
+    visits.visit_date ASC
+LIMIT
+    1;
+
+SELECT
+    *
+FROM
+    animals
+    JOIN visits ON animals.id = visits.animals_id
+    JOIN vets ON vets.id = visits.vets_id
+ORDER BY
+    visits.visit_date DESC
+LIMIT
+    1;
+
+SELECT
+    COUNT(visits.id) as count
+FROM
+    visits
+    LEFT JOIN animals ON visits.animals_id = animals.id
+    LEFT JOIN vets ON visits.vets_id = vets.id
+    LEFT JOIN specializations ON specializations.species_id = animals.species_id
+    AND specializations.vets_id = vets.id
+WHERE
+    specializations.species_id IS NULL;
+
+SELECT
+    species.name as species
+FROM
+    animals
+    JOIN visits ON animals.id = visits.animals_id
+    JOIN vets ON vets.id = visits.vets_id
+    JOIN species ON species.id = animals.species_id
+WHERE
+    vets.id = 2
+GROUP BY
+    species.name
+ORDER BY
+    COUNT(species.name) DESC
+LIMIT
+    1;
